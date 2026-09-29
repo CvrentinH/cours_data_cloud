@@ -175,7 +175,21 @@ LIMIT 10;
 
 ---
 
+---
+
 ## 🏁 Bilan du TP 1 (Débrief en plénière - 20 minutes)
 1. Est-ce que le SQL vous a paru si difficile que cela ?
 2. Quelle différence entre faire cela sur Excel et dans le Cloud ?
-3. Dès demain matin, nous allons transformer ces requêtes textuelles en une véritable **carte de contrôle visuelle interactive** pour les commandants de bord !
+3. Dès demain matin, nous démarrerons sur un nouveau sujet pour concevoir un **cockpit de décision visuel** pour l'état-major !
+
+---
+
+## 📊 Grille d'Évaluation & Barème de Notation – TP 1 (sur 20 points)
+
+| Critère | Barème | Description des attentes |
+| :--- | :---: | :--- |
+| **Mise en place de l'environnement Cloud** | **/ 4 pts** | Projet BigQuery Sandbox créé, dataset `marine_nationale` configuré en région Europe, import correct du fichier CSV. |
+| **Maîtrise des requêtes de base (Ex. 1 & 2)** | **/ 5 pts** | Utilisation correcte de `SELECT`, `COUNT`, `DISTINCT`, `ORDER BY` et `LIMIT`. |
+| **Agrégation des données (Ex. 3)** | **/ 4 pts** | Utilisation maîtrisée du `GROUP BY` et des fonctions d'agrégation (`AVG`, `ROUND`). |
+| **Analyse tactique des anomalies (Ex. 4)** | **/ 5 pts** | Filtrage avec `WHERE`, identification des navires suspects et pertinence de l'analyse managériale/opérationnelle. |
+| **Sensibilité FinOps & Curiosité (Ex. 5)** | **/ 2 pts** | Capacité à surveiller l'estimateur de volume de données scanné et exploration des tables publiques. |

@@ -1,110 +1,101 @@
-# TP 2 : Du Cloud à la Décision – Créer le Tableau de Bord Opérationnel de la Marine (Looker Studio)
+# TP 2 : Cockpit Opérationnel – Tableau de Bord Décisionnel de la Flotte Navale (Looker Studio)
 
 **Durée :** 3h30 (Jour 2 - Matin)  
-**Modalité :** En binôme  
-**Outil :** Google Looker Studio (100% gratuit, 100% sans code, directement relié à BigQuery)  
-**Rôle des étudiants :** Data Manager & Analyste Opérationnel au Centre des Opérations Maritimes (COM)
+**Modalité :** En binôme (ou individuel)  
+**Outil :** Google Looker Studio (100% gratuit, 100% sans code, dans le navigateur)  
+**Données :** [`donnees_tp2_missions_flotte.csv`](../donnees/donnees_tp2_missions_flotte.csv)  
+**Évaluation :** Noté sur 20 points (barème détaillé en fin de document)
+
+> [!IMPORTANT]
+> **Autonomie totale du TP 2 par rapport au TP 1 :**  
+> Ce TP utilise un **jeu de données neuf et dédié** (`donnees_tp2_missions_flotte.csv`). Vous repartez sur une base saine et vierge : aucune manipulation du TP 1 n'est requise pour réussir ce sujet.
 
 ---
 
 ## 🎯 Objectifs Pédagogiques
 
-1. Comprendre le rôle de la **Business Intelligence (BI)** dans le Cloud : rendre la donnée intelligible pour les décideurs.
-2. Éviter le piège du "rapport statique PDF" : créer un outil interactif, filtrable en direct.
-3. Construire une cartographie maritime dynamique et des indicateurs d'alerte (KPIs) en quelques clics sans écrire une seule ligne de code.
-4. Pitcher son tableau de bord lors d'une simulation de **Briefing Opérationnel d'État-Major**.
+1. Découvrir la **Business Intelligence (BI)** dans le Cloud : transformer des lignes de données brutes en un outil visuel d'aide à la décision.
+2. Respecter les règles d'ergonomie d'un tableau de bord de direction (règle des 5 secondes, hiérarchie visuelle).
+3. Concevoir une cartographie des déploiements navals mondiaux, des cartes de score (KPIs) et des filtres interactifs.
+4. Présenter sa situation opérationnelle lors d'un **Briefing d'État-Major de 3 minutes**.
 
 ---
 
-## 🚀 Étape 1 : Connecter BigQuery à Looker Studio en 1 Clic (10 minutes)
+## 🚀 Étape 1 : Connexion des Données à Looker Studio (10 minutes)
 
-Il existe deux manières simples d'interconnecter les deux outils :
+Vous avez deux méthodes simples au choix pour charger votre jeu de données :
 
-### Méthode Directe depuis BigQuery :
-1. Dans votre console BigQuery, ouvrez votre table `positions_ais`.
-2. Cliquez sur le bouton **"Explorer les données"** (en haut au centre), puis sur **"Explorer avec Looker Studio"**.
-3. Une nouvelle page Looker Studio s'ouvre automatiquement : votre entrepôt Cloud est déjà branché !
+### Méthode A (Recommandée - Via BigQuery) :
+1. Allez sur votre console [Google BigQuery](https://console.cloud.google.com/bigquery).
+2. Dans votre projet, sous `marine_nationale`, cliquez sur les 3 points > **Créer une table**.
+   - Source : **Importer (Upload)** > choisir `donnees_tp2_missions_flotte.csv`.
+   - Nom de la table : `missions_flotte`.
+   - Schéma : cocher **Détecter automatiquement**.
+   - Cliquer sur **Créer la table**.
+3. Cliquez sur **Explorer les données** > **Explorer avec Looker Studio**.
 
-### Ou Méthode depuis Looker Studio :
-1. Rendez-vous sur : [https://lookerstudio.google.com](https://lookerstudio.google.com)
+### Méthode B (Secours direct sans BigQuery) :
+1. Rendez-vous directement sur [Looker Studio](https://lookerstudio.google.com).
 2. Cliquez sur **Créer** > **Rapport**.
-3. Dans la liste des connecteurs Google, choisissez **BigQuery**.
-4. Sélectionnez : **Mes projets** > Votre projet (`marine-data-m2`) > `marine_nationale` > `positions_ais` > Cliquez sur **Ajouter**.
+3. Dans la liste des connecteurs, choisissez **Importation de fichiers (File Upload)** et déposez directement le fichier `donnees_tp2_missions_flotte.csv`.
 
 ---
 
-## 🎨 Étape 2 : Le Cahier des Charges de l'Amiral (Design & Ergonomie)
+## 🧭 Étape 2 : Le Cahier des Charges de l'État-Major
 
-Un bon tableau de bord pour un décideur doit respecter la règle des **5 secondes** : en un coup d'œil, le commandant doit savoir si la situation est sous contrôle ou si une alerte requiert son attention.
+Votre tableau de bord doit permettre à l'Amiral commandant les opérations maritimes de piloter les déploiements de la flotte navale française à travers le monde.
 
-### Palette recommandée ("Aéronavale & Marine") :
-- **Arrière-plan** : Bleu nuit profond ou gris ardoise épuré.
-- **Accents d'alerte** : Rouge vif ou ambre pour les anomalies (`alerte_anomalie = 1`).
-- **Couleurs de flotte** : Cyan/Bleu pour les civils, Vert pour les alliés/militaires.
+### 1. En-tête & Identité Visuelle
+- Titre : `ÉTAT-MAJOR DE LA MARINE – TABLEAU DE BORD DU DÉPLOIEMENT OPÉRATIONNEL`
+- Sous-titre : `Suivi mondial des missions, consommations et interventions en mer`
+- Style sobre et professionnel : fond sombre (bleu marine / ardoise) ou clair épuré.
 
----
+### 2. Les 4 Indicateurs Clés de Performance (Cartes de score / Scorecards)
+Insérez 4 zones de texte chiffrées en haut de page :
+1. **Missions Totales Déployées** : Comptage distinct de `id_mission`.
+2. **Missions Actuellement en Mer** : Nombre de missions avec le statut `En cours`.
+3. **Total des Interventions Réussies** : Somme de `interventions_succes` (sauvetages, arraisonnements narcotrafic).
+4. **Jours de Mer Cumulés** : Somme de `duree_jours` (effort opérationnel global de la flotte).
 
-## 🛠️ Étape 3 : Construction pas-à-pas du Cockpit (1h15)
+### 3. La Carte Géographique Mondiale des Déploiements
+Ajoutez un graphique de type **Carte à bulles (Google Maps)** :
+- **Latitude** : champ `latitude_theatre`.
+- **Longitude** : champ `longitude_theatre`.
+- **Taille de la bulle** : métrique `duree_jours` (ou `cout_total_euros`).
+- **Couleur de la bulle** : dimension `type_batiment` ou `statut_mission`.
+- **Info-bulle (Tooltip)** : afficher `nom_batiment`, `type_mission` et `port_attache`.
 
-### 1. Le Titre & L'En-tête
-- Insérez une zone de texte en haut de la page :
-  `CENTRE DES OPÉRATIONS MARITIMES – SITUATION DE SURFACE ET DÉTECTION D'ANOMALIES`
-- Sous-titre : `Source : Flux AIS Cloud - Actualisation automatique BigQuery`
+### 4. Deux Graphiques Analytiques Complémentaires
+- **Graphique 1 (Barres horizontales)** : *Nombre d'interventions réussies par type de mission* (permet de visualiser l'efficacité de la lutte narcotrafic vs sauvetage en mer).
+- **Graphique 2 (Anneau / Donut)** : *Répartition des jours de mer par base navale d'attache* (`port_attache` : Brest, Toulon, Cherbourg, Outre-Mer).
 
-### 2. Les Cartes de Score (KPIs Décisionnels)
-Dans la barre d'outils, cliquez sur **Ajouter un graphique** > **Zone de texte chiffrée (Scorecard)** :
-- **Scorecard 1 - Volume de la Flotte** :
-  - Métrique : `nom_navire` (définie sur `Nombre d'éléments distincts` / Count Distinct).
-  - Libellé : `Navires Actifs Détectés`.
-- **Scorecard 2 - Alertes Prioritaires** :
-  - Métrique : `alerte_anomalie` (Somme).
-  - Libellé : `Anomalies / Suspects`.
-  - Style : Chiffre en rouge vif.
-- **Scorecard 3 - Vitesse Moyenne** :
-  - Métrique : `vitesse_noeuds` (définie sur `Moyenne`).
-  - Libellé : `Vitesse Flotte (Nœuds)`.
+### 5. Les Commandes de Filtrage Interactif (Menus Déroulants)
+Ajoutez 3 filtres interactifs en haut ou sur le côté pour permettre au décideur de segmenter la vue :
+- **Filtre 1** : `zone_operationnelle` (ex: Méditerranée, Golfe de Guinée, Océan Indien, Atlantique...).
+- **Filtre 2** : `statut_mission` (Terminée, En cours, En préparation).
+- **Filtre 3** : `type_batiment` (Frégate, Patrouilleur, Porte-hélicoptères...).
 
-### 3. La Carte Géographique Interactive (Le clou du spectacle !)
-1. Cliquez sur **Ajouter un graphique** > **Carte géographique** (Google Maps / Bulle).
-2. Dans le panneau de configuration à droite :
-   - **Champ de localisation** : Faites glisser `latitude` ou créez un champ combiné, ou utilisez simplement le type géographique de Looker Studio.
-   - *(Astuce simplissime : vous pouvez aussi utiliser la "Carte à bulles" avec `latitude` en latitude et `longitude` en longitude).*
-   - **Taille de la bulle** : `longueur_metres` (les gros porte-conteneurs apparaissent plus grands que les chalutiers).
-   - **Couleur** : `type_navire` ou `type_anomalie`.
-   - **Info-bulle (Tooltip)** : `nom_navire`, `pavillon`, `vitesse_noeuds`, `destination`.
-
-### 4. Les Menus Déroulants (Filtres Interactifs)
-Permettez à l'amiral de filtrer la carte selon ses besoins :
-1. Cliquez sur **Ajouter une commande** > **Liste déroulante**.
-   - Champ de contrôle 1 : `zone_maritime` (Manche, Brest, Toulon...).
-2. Ajoutez une deuxième liste déroulante :
-   - Champ de contrôle 2 : `type_navire` (Cargo, Pétrolier, Militaire...).
-3. Ajoutez une troisième commande :
-   - Champ de contrôle 3 : `alerte_anomalie` (pour isoler instantanément les menaces).
-
-### 5. La Table Tactique des Alertes
-En bas du tableau de bord, ajoutez un **Tableau** pour lister les navires suspects :
-- Dimensions : `nom_navire`, `pavillon`, `zone_maritime`, `vitesse_noeuds`, `type_anomalie`.
-- Filtre du graphique : `alerte_anomalie = 1`.
+### 6. Le Tableau Récapitulatif Opérationnel
+En bas de page, insérez un tableau listant les missions actives :
+- Colonnes : `id_mission`, `nom_batiment`, `type_mission`, `zone_operationnelle`, `date_depart`, `statut_mission`.
 
 ---
 
-## 🎙️ Étape 4 : L'Exercice "Briefing Opérationnel d'État-Major" (45 minutes)
+## 🎙️ Étape 3 : Le Briefing Opérationnel de Restitution (45 minutes)
 
-Chaque binôme prépare un briefing de **3 minutes chrono** face à la promotion :
-
-### Scénario :
-> *"Vous êtes l'officier data de quart. L'Amiral entre dans la salle de crise à 08h00. Vous devez lui présenter la situation maritime en Manche et en Méditerranée à l'aide de votre tableau de bord Looker Studio."*
-
-### Grille d'évaluation du briefing :
-1. **Clarté de la synthèse** : Les chiffres clés sont-ils annoncés en 30 secondes ?
-2. **Utilisation dynamique des filtres** : L'étudiant sait-il cliquer sur "Zone Méditerranée / Toulon" pour zoomer sur l'anomalie du navire russe à l'arrêt ?
-3. **Recommandation managériale / opérationnelle** : L'étudiant ne se contente pas de lire des chiffres, il propose une décision (ex: *"Je préconise l'envoi d'un patrouilleur pour lever le doute"*).
+Chaque binôme présente son cockpit pendant **3 minutes chrono** face à l'Amiral (l'enseignant) :
+1. **Minute 1** : Synthèse de la situation générale (lecture commentée des 4 KPIs).
+2. **Minute 2** : Utilisation des filtres en direct pour faire un focus sur un théâtre chaud (ex: filtrer sur *Golfe de Guinée* ou *Océan Indien*).
+3. **Minute 3** : Recommandation de gestion (arbitrage logistique ou redéploiement d'un bâtiment).
 
 ---
 
-## 🏆 Bilan de la session
-Les étudiants ont accompli en moins de 24h ce que beaucoup pensaient réservé aux ingénieurs informaticiens :
-- Importer des millions de données dans un Data Warehouse Cloud mondial.
-- Les requêter en SQL.
-- Livrer un outil de décision visuel professionnel et interactif.
+## 📊 Grille d'Évaluation & Barème de Notation (sur 20 points)
+
+| Critère | Barème | Description des attentes |
+| :--- | :---: | :--- |
+| **Pertinence des KPIs & Métriques** | **/ 5 pts** | Les 4 cartes de score sont correctement calculées (comptage distinct, sommes justes, libellés clairs). |
+| **Qualité & Précision de la Carte** | **/ 5 pts** | Les bulles sont bien géolocalisées sur le globe, les tailles et couleurs apportent une vraie valeur informative. |
+| **Interactivité & Menus de Filtrage** | **/ 4 pts** | Les 3 filtres fonctionnent correctement et actualisent dynamiquement tous les visuels du dashboard. |
+| **Ergonomie & Design Décisionnel** | **/ 3 pts** | Respect de la règle des 5 secondes : pas de surcharge visuelle, contrastes lisibles, alignement soigné. |
+| **Briefing d'État-Major (Restitution orale)** | **/ 3 pts** | Synthèse claire, posture managériale, réponse fluide aux questions de l'Amiral. |

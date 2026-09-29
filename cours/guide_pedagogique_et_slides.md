@@ -40,11 +40,11 @@ Ce document est votre conducteur personnel pour animer les 14 heures de formatio
 
 | Horaire | Durée | Étape & Contenu | Ce que vous faites / dites |
 | :--- | :--- | :--- | :--- |
-| **09h00 - 09h30** | 30 min | **Introduction à la Business Intelligence** | Pourquoi un tableau de bord plutôt qu'un tableau de chiffres ? Les règles d'un bon dashboard pour l'état-major (5 secondes). |
-| **09h30 - 10h30** | 60 min | **Construction du Dashboard (Partie 1)** | Connexion BigQuery -> Looker Studio. Création des Scorecards (Total navires, alertes) et filtres déroulants. |
+| **09h00 - 09h30** | 30 min | **Introduction à la Business Intelligence** | Pourquoi un tableau de bord décisionnel ? Les règles d'un bon dashboard pour l'état-major. Présentation du sujet TP 2 et de ses données autonomes (`donnees_tp2_missions_flotte.csv`). |
+| **09h30 - 10h30** | 60 min | **Construction du Dashboard (Partie 1)** | Chargement du CSV en 2 min dans BigQuery (ou direct Looker). Création des Scorecards (Missions actives, Interventions, Jours de mer) et filtres interactifs. |
 | **10h30 - 10h45** | 15 min | *Pause Café* ☕ | |
-| **10h45 - 11h45** | 60 min | **Construction du Dashboard (Partie 2)** | Création de la Carte interactive Google Maps à bulles. Tableau de bord des menaces. Personnalisation graphique. |
-| **11h45 - 12h30** | 45 min | **Briefings à l'Amiral (Pitchs)** | Chaque binôme passe 2-3 minutes pour présenter sa situation maritime du jour en direct. |
+| **10h45 - 11h45** | 60 min | **Construction du Dashboard (Partie 2)** | Création de la Carte mondiale Google Maps à bulles. Graphiques d'interventions et de bases navales. Tableau récapitulatif. |
+| **11h45 - 12h30** | 45 min | **Briefings à l'Amiral (Restitution /3 pts)** | Chaque binôme passe 3 minutes chrono pour présenter sa situation opérationnelle en direct. |
 
 ---
 

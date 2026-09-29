@@ -2,48 +2,55 @@
 ## "Du Cloud au Cockpit Opérationnel : Piloter la Data comme dans la Marine Nationale"
 
 - **Intervenant** : Data Manager – Marine Nationale
-- **Public** : Étudiants de Master 2 (Profils non-techniques : Management, Supply Chain, Relations Internationales / Défense, Stratégie, Économie)
-- **Durée totale** : 14 heures réparties en 4 sessions de 3h30 (2 journées de 7h)
-- **Prérequis techniques** : Zéro code requis. Un simple navigateur web suffit (Google Chrome / Edge / Firefox) et un compte Google (perso ou universitaire).
+- **Public** : Étudiants de Master 2 (Profils non-techniques : Management, Supply Chain, Défense, Stratégie, Économie)
+- **Durée totale** : 14 heures (4 sessions de 3h30 sur 2 journées de 7h)
+- **Prérequis techniques** : Zéro code requis. Un simple navigateur web suffit et un compte Google personnel ou étudiant.
+- **Guide de l'enseignant & conducteur de présentation** : [`cours/guide_pedagogique_et_slides.md`](cours/guide_pedagogique_et_slides.md)
 
 ---
 
 ## 🎯 Philosophie & Approche Pédagogique
 
 ### Le Piège à Éviter
-Les étudiants M2 non-tech ont souvent peur de la data et du cloud (peur du code, des lignes de commande, de la carte bancaire sur AWS/Azure, des acronymes barbares IAM, VPC, Kubernetes).
+Les étudiants M2 non-tech ont souvent peur du code, des terminaux en ligne de commande et des facturations imprévues sur le Cloud.
 
 ### La Clé du Succès
-1. **L'analogie maritime comme fil conducteur** : Vous êtes Data Manager dans la Marine Nationale. Utilisez votre quotidien ! Les navires, sémaphores, drones de surveillance côtière, la lutte contre les trafics et le suivi des flux maritimes mondiaux sont ultra-fédérateurs et très parlants pour comprendre le volume, la vitesse et la variété des données.
-2. **Le Cloud par l'usage et la décision** : On n'apprend pas à créer des clusters de serveurs, on apprend à **comprendre la chaîne de valeur du Cloud** (Où dorment les données ? Comment les interroge-t-on sans serveur ? Comment les transformer en tableau de bord d'aide à la décision ?).
-3. **Zéro barrière financière ni installation locale** :
-   - **Google BigQuery Sandbox** : 100% gratuit, **SANS CARTE BANCAIRE**, directement dans le navigateur, 1 To de requêtage gratuit par mois.
-   - **Looker Studio** : Outil de Data Visualisation gratuit, sans code, interconnecté en 1 clic à BigQuery.
+1. **L'analogie maritime comme fil rouge** : En tant que Data Manager de la Marine, vous apportez des cas réels (surveillance côtière, détection de navires suspects, maintenance de flotte).
+2. **Le Cloud par l'usage managérial** : Comprendre la valeur business et opérationnelle, savoir poser les bonnes questions à la donnée et décider.
+3. **Zéro friction technique** : Utilisation de **Google BigQuery Sandbox** (gratuit, sans carte bleue) et de **Looker Studio** (outil de dataviz no-code dans le navigateur).
 
 ---
 
-## 📅 Découpage des 14 Heures (4 sessions de 3h30)
+## 📅 Découpage Précis des 14 Heures & Fichiers Associés
 
-| Jour | Créneau | Module | Objectif Pédagogique | Modalité | Ressources & Fichiers mobilisés |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Jour 1** | **Matin (3h30)** | **Session 1 : Démystifier le Cloud Data & Enjeux Maritimes** | Comprendre ce qu'est le Cloud, pourquoi l'On-Premise sature, vocabulaire clé (SaaS/PaaS/IaaS, Data Lake vs Data Warehouse, Serverless) et le cas de la Marine. | Cours interactif, analogies concrètes, quiz d'ouverture | • [`cours/01_introduction_cloud_data.md`](cours/01_introduction_cloud_data.md)<br/>• [`cours/02_architecture_et_donnees_maritimes.md`](cours/02_architecture_et_donnees_maritimes.md)<br/>• [`cours/guide_pedagogique_et_slides.md`](cours/guide_pedagogique_et_slides.md) |
-| **Jour 1** | **Après-midi (3h30)** | **Session 2 : Atelier Pratique 1 – Exploration de la Flotte avec BigQuery** | Prise en main de Google BigQuery Sandbox. Import et requêtage assisté d'un jeu de données maritimes (positions AIS de navires, anomalies de route). | Atelier guidé pas-à-pas en binôme | • [`ateliers/TP1_BigQuery_Surveillance_Maritime.md`](ateliers/TP1_BigQuery_Surveillance_Maritime.md)<br/>• [`donnees/donnees_maritimes_ais_sample.csv`](donnees/donnees_maritimes_ais_sample.csv)<br/>• [`donnees/dictionnaire_des_donnees.md`](donnees/dictionnaire_des_donnees.md)<br/>• Console Google BigQuery Sandbox |
-| **Jour 2** | **Matin (3h30)** | **Session 3 : Atelier Pratique 2 – Du Cloud à la Décision (Dashboard Looker)** | Connecter le Data Warehouse à un outil décisionnel sans code. Construire une carte interactive de surveillance maritime et des KPIs d'alerte. | Atelier pratique de restitution visuelle | • [`ateliers/TP2_Dashboard_Looker_Studio.md`](ateliers/TP2_Dashboard_Looker_Studio.md)<br/>• Table BigQuery `marine_nationale.positions_ais`<br/>• Google Looker Studio |
-| **Jour 2** | **Après-midi (3h30)** | **Session 4 : Gouvernance, FinOps, Souveraineté & Jeu de Rôle Final** | Comprendre les risques réels du Cloud (coûts cachés, Cloud Act américain vs SecNumCloud français, sécurité) + Mini-Hackathon / Jeu de rôle décisionnel. | Cours synthétique + Simulation d'un comité d'état-major | • [`cours/03_gouvernance_finops_souverainete.md`](cours/03_gouvernance_finops_souverainete.md)<br/>• [`ateliers/TP3_Jeu_de_Role_Comite_Arbitrage.md`](ateliers/TP3_Jeu_de_Role_Comite_Arbitrage.md) |
+Chaque demi-journée a son fichier de cours et/ou son atelier dédié :
+
+| Créneau | Objectifs de la session | Fichiers & Données utilisés |
+| :--- | :--- | :--- |
+| **JOUR 1 – MATIN**<br/>*(3h30)* | **Comprendre le Cloud sans jargon**<br/>• Qu'est-ce que le Cloud ? (élasticité, pay-as-you-go)<br/>• On-Premise vs Cloud : IaaS, PaaS, SaaS<br/>• Le Serverless et le découplage Stockage / Calcul<br/>• Pourquoi Excel sature face aux flux maritimes massifs | 📖 **Support de cours :**<br/>[`cours/01_introduction_cloud_data.md`](cours/01_introduction_cloud_data.md) |
+| **JOUR 1 – APRÈS-MIDI**<br/>*(3h30)* | **Prise en main du Cloud & Requêtage maritime**<br/>• Intro express (20 min) : Comment marche l'AIS & les 4 mots du SQL<br/>• Atelier BigQuery Sandbox (zéro carte bleue)<br/>• Import des pings de navires & requêtes de surveillance<br/>• Détection des navires suspects (pétroliers rapides, arrêts anormaux) | 📖 **Support introductif :**<br/>[`cours/02_architecture_et_donnees_maritimes.md`](cours/02_architecture_et_donnees_maritimes.md)<br/><br/>🛠️ **Atelier pratique :**<br/>[`ateliers/TP1_BigQuery_Surveillance_Maritime.md`](ateliers/TP1_BigQuery_Surveillance_Maritime.md)<br/><br/>📊 **Données :**<br/>• [`donnees/donnees_maritimes_ais_sample.csv`](donnees/donnees_maritimes_ais_sample.csv)<br/>• [`donnees/dictionnaire_des_donnees.md`](donnees/dictionnaire_des_donnees.md) |
+| **JOUR 2 – MATIN**<br/>*(3h30)* | **Du Data Warehouse à la Décision (Dataviz No-Code)**<br/>• **100% indépendant du TP 1** (évaluation autonome sur base saine)<br/>• Règles d'ergonomie d'un dashboard d'état-major<br/>• Connexion BigQuery ou directe ➔ Looker Studio en 1 clic<br/>• Création de la carte interactive des déploiements navals et des KPIs<br/>• Restitution : Briefing opérationnel de 3 min par binôme | 🛠️ **Atelier pratique (Noté /20) :**<br/>[`ateliers/TP2_Dashboard_Looker_Studio.md`](ateliers/TP2_Dashboard_Looker_Studio.md)<br/><br/>📊 **Données dédiées au TP 2 :**<br/>• [`donnees/donnees_tp2_missions_flotte.csv`](donnees/donnees_tp2_missions_flotte.csv)<br/>• [`donnees/dictionnaire_donnees_tp2.md`](donnees/dictionnaire_donnees_tp2.md) |
+| **JOUR 2 – APRÈS-MIDI**<br/>*(3h30)* | **Gouvernance, FinOps, Souveraineté & Jeu de Rôle**<br/>• Cours stratégique (1h15) : FinOps (dérives de coûts), Cloud Act américain vs SecNumCloud français (ANSSI), gouvernance<br/>• Simulation finale (2h) : Comité d'arbitrage "SURMAR 2030"<br/>• Débat en équipes (Opérations vs RSSI vs FinOps vs Data Manager)<br/>• Pitch final de chaque groupe et bilan des 14h | 📖 **Support de cours :**<br/>[`cours/03_gouvernance_finops_souverainete.md`](cours/03_gouvernance_finops_souverainete.md)<br/><br/>🎭 **Jeu de rôle / Évaluation (Noté /20) :**<br/>[`ateliers/TP3_Jeu_de_Role_Comite_Arbitrage.md`](ateliers/TP3_Jeu_de_Role_Comite_Arbitrage.md) |
 
 ---
 
-## 🗂️ Structure du Dossier
+## 🗂️ Répertoire Complet des Fichiers du Projet
 
-- **`cours/`** :
-  - [`guide_pedagogique_et_slides.md`](cours/guide_pedagogique_et_slides.md) : Guide d'animation minute par minute et trame des diapositives.
-  - [`01_introduction_cloud_data.md`](cours/01_introduction_cloud_data.md) : Les bases du Cloud sans jargon.
-  - [`02_architecture_et_donnees_maritimes.md`](cours/02_architecture_et_donnees_maritimes.md) : Pourquoi la Marine utilise le Cloud (AIS, IoT marin, maintenance).
-  - [`03_gouvernance_finops_souverainete.md`](cours/03_gouvernance_finops_souverainete.md) : FinOps, Cloud souverain (SecNumCloud) et sécurité.
-- **`ateliers/`** :
-  - [`TP1_BigQuery_Surveillance_Maritime.md`](ateliers/TP1_BigQuery_Surveillance_Maritime.md) : TP d'exploration de données AIS maritimes (avec requêtes fournies).
-  - [`TP2_Dashboard_Looker_Studio.md`](ateliers/TP2_Dashboard_Looker_Studio.md) : TP de création d'un tableau de bord de surveillance maritime.
-  - [`TP3_Jeu_de_Role_Comite_Arbitrage.md`](ateliers/TP3_Jeu_de_Role_Comite_Arbitrage.md) : Cas pratique final d'évaluation en équipe.
-- **`donnees/`** :
-  - [`donnees_maritimes_ais_sample.csv`](donnees/donnees_maritimes_ais_sample.csv) : Dataset maritime synthétique réaliste prêt à être importé.
-  - [`dictionnaire_des_donnees.md`](donnees/dictionnaire_des_donnees.md) : Explication de chaque colonne pour les étudiants.
+```text
+cours_cloud_data/
+├── README.md                                  <- Ce fichier de cadrage
+├── cours/
+│   ├── guide_pedagogique_et_slides.md         <- Conducteur enseignant (planning minute par minute + slides)
+│   ├── 01_introduction_cloud_data.md          <- COURS J1 MATIN (Fondamentaux du Cloud)
+│   ├── 02_architecture_et_donnees_maritimes.md <- COURS J1 APRÈS-MIDI (Intro Architecture, AIS & SQL)
+│   └── 03_gouvernance_finops_souverainete.md  <- COURS J2 APRÈS-MIDI (FinOps, SecNumCloud, Souveraineté)
+├── ateliers/
+│   ├── TP1_BigQuery_Surveillance_Maritime.md  <- TP J1 APRÈS-MIDI (BigQuery Sandbox - Noté /20)
+│   ├── TP2_Dashboard_Looker_Studio.md         <- TP J2 MATIN (Dashboard Looker Studio - Noté /20 - Indépendant)
+│   └── TP3_Jeu_de_Role_Comite_Arbitrage.md    <- ÉVALUATION J2 APRÈS-MIDI (Comité stratégique - Noté /20)
+└── donnees/
+    ├── donnees_maritimes_ais_sample.csv       <- Données TP 1 (2 000 navires AIS + 31 anomalies)
+    ├── dictionnaire_des_donnees.md            <- Dictionnaire des colonnes TP 1
+    ├── donnees_tp2_missions_flotte.csv        <- Données TP 2 (400 missions navales mondiales)
+    └── dictionnaire_donnees_tp2.md            <- Dictionnaire des colonnes TP 2
+```
